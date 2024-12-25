@@ -12,7 +12,7 @@ const Header = () => {
           <div className="flex items-center space-x-2">
             {/* Add your image here */}
             <img 
-              src="https://imgur.com/C3ZjYMX" 
+              src="https://imagizer.imageshack.com/img923/623/o1YQTc.png" 
               alt="Prakhar" 
               className="w-16 h-16 rounded-full" 
             />
