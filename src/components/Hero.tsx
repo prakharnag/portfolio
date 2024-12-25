@@ -49,8 +49,7 @@ const Hero = ({ toggleTheme, theme }: HeroProps) => {
           </span>
         </h1>
         <p className="mt-6 text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-          Hi, I'm Prakhar. Engineering solutions to complex problems using modern technologies.
-          Passionate about creating impactful software that makes a difference.
+          Hi, I'm Prakhar. Passionate about creating impactful software solutions to complex problems using modern technologies.
         </p>
           <div className="mt-8 flex justify-center gap-4">
             <a
