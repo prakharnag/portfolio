@@ -50,7 +50,7 @@ export const projects = [
   {
     title: 'Life on Blocks',
     description: 'A blockchain-based system for secure storage and processing of patient health records. Ensures data transparency and security in healthcare information management.',
-    image: 'https://imgur.com/Jipfm4q?auto=format&fit=crop&q=80&w=800',
+    image: 'https://app.gemoo.com/share/image-annotation/730421449967788032?codeId=MpRaAZLao4nWo&origin=imageurlgenerator&card=730421449154093056?auto=format&fit=crop&q=80&w=800',
     tech: ['JavaScript', 'Python', 'Flask', 'MongoDB'],
     github: 'https://github.com/prakharnag/LifeOnBlocks',
     achievements: [
