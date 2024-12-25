@@ -2,7 +2,7 @@ export const projects = [
   {
     title: 'IntelliBot',
     description: 'An AI-driven virtual assistant that optimizes backend services for improved customer support efficiency. Utilizes advanced AI models and cloud infrastructure for reliable performance.',
-    image: './intellibot.png?auto=format&fit=crop&q=80&w=800',
+    image: 'https://imgur.com/UZqEmh7?auto=format&fit=crop&q=80&w=800',
     tech: ['Dart', 'Flutter', 'AWS EC2', 'EMR', 'OpenAI', 'Gemini', 'StabilityAI'],
     github: 'https://github.com/prakharnag/IntelliBot',
     achievements: [
@@ -14,7 +14,7 @@ export const projects = [
   {
     title: 'IntelliQuery',
     description: 'A semantic search application leveraging AI-driven vector search to enhance search relevance. Built with scalability and performance in mind using modern cloud technologies.',
-    image: './Intelliquery.png?auto=format&fit=crop&q=80&w=800',
+    image: 'https://imgur.com/iJxnu3s?auto=format&fit=crop&q=80&w=800',
     tech: ['Python', 'Docker', 'AWS EC2', 'Elasticsearch', 'OpenAI'],
     github: 'https://github.com/prakharnag/IntelliQuery',
     achievements: [
@@ -50,7 +50,7 @@ export const projects = [
   {
     title: 'Life on Blocks',
     description: 'A blockchain-based system for secure storage and processing of patient health records. Ensures data transparency and security in healthcare information management.',
-    image: './blockchain.jpeg?auto=format&fit=crop&q=80&w=800',
+    image: 'https://imgur.com/Jipfm4q?auto=format&fit=crop&q=80&w=800',
     tech: ['JavaScript', 'Python', 'Flask', 'MongoDB'],
     github: 'https://github.com/prakharnag/LifeOnBlocks',
     achievements: [
