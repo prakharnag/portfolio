@@ -19,9 +19,11 @@ const blink = keyframes`
 const TypewriterText = styled.span`
   display: inline-block;
   overflow: hidden;
-  white-space: nowrap;
+  white-space: normal;
   border-right: 0.15em solid #000; /* Cursor effect */
   animation: ${typewriter} 6s steps(30) infinite, ${blink} 12s step-end infinite;
+  word-wrap: break-word; /* Ensure words break properly if they exceed the container */
+  max-width: 100%; /* Ensure it fits within its container */
 `;
 
 interface HeroProps {
