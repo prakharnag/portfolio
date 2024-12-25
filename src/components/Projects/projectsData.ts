@@ -2,7 +2,7 @@ export const projects = [
   {
     title: 'IntelliBot',
     description: 'An AI-driven virtual assistant that optimizes backend services for improved customer support efficiency. Utilizes advanced AI models and cloud infrastructure for reliable performance.',
-    image: 'https://imgur.com/UZqEmh7?auto=format&fit=crop&q=80&w=800',
+    image: 'https://github.com/prakharnag/portfolio/blob/main/intellibot.png?auto=format&fit=crop&q=80&w=800',
     tech: ['Dart', 'Flutter', 'AWS EC2', 'EMR', 'OpenAI', 'Gemini', 'StabilityAI'],
     github: 'https://github.com/prakharnag/IntelliBot',
     achievements: [
