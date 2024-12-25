@@ -1,6 +1,6 @@
 {
-  "homepage": "https://prakharnag.github.io/Portfolio/",
   "name": "vite-react-typescript-starter",
+  "homepage": "https://prakharnag.github.io/Portfolio/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@types/styled-components": "^5.1.34",
