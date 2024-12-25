@@ -19,10 +19,15 @@ const blink = keyframes`
 const TypewriterText = styled.span`
   display: inline-block;
   overflow: hidden;
-  white-space: normal;
+  white-space: nowrap; /* Ensure no wrapping initially */
   border-right: 0.15em solid #000; /* Cursor effect */
   animation: ${typewriter} 6s steps(30) infinite, ${blink} 12s step-end infinite;
-  word-wrap: break-word; /* Ensure words break properly if they exceed the container */
+  
+  /* Wrapping behavior when content exceeds container width */
+  @media (max-width: 600px) {
+    white-space: normal; /* Allow wrapping when the container is too small */
+  }
+
 `;
 
 interface HeroProps {
