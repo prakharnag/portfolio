@@ -14,7 +14,7 @@ const Contact = () => {
           
           <div className="flex justify-center space-x-6">
             <a
-              href="mailto:pnag@hawk.iit.edu"
+              href="mailto:prakharnagwork@gmail.com"
               className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
             >
               <Mail className="w-5 h-5 text-gray-700" />

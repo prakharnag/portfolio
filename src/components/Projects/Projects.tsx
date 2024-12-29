@@ -11,11 +11,16 @@ const Projects = () => {
           A collection of projects showcasing my expertise in AI, mobile development,
           and full-stack applications.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-white-600 ">
-          {projects.map((project, index) => (
-            <ProjectCard key={index} project={project} />
-          ))}
-        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-white-600">
+        {projects.map((project, index) => (
+          <div
+            key={index}
+            className="p-4 border border-gray-300 rounded-lg shadow-md bg-white-800"
+          >
+            <ProjectCard project={project} />
+          </div>
+        ))}
+      </div>
       </div>
     </section>
   );

@@ -1,6 +1,6 @@
 const skills = {
   'Frontend': ['React', 'TypeScript', 'Tailwind CSS', 'HTML', 'CSS'],
-  'Backend': ['Node.js', 'Java', 'Python', 'PostgreSQL', 'MySQL',' MongoDB'],
+  'Backend': ['Java', 'Python','Node.js','PostgreSQL', 'MySQL',' MongoDB', 'Flask'],
   'DevOps': ['Docker', 'AWS', 'CI/CD','Linux'],
   'Mobile-App': ['Dart', 'Flutter'],
   'Tools': ['Git', 'VS Code', 'Microsoft SQL Server', 'Postman', 'Oracle SQL Developer']
