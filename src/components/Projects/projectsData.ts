@@ -48,7 +48,7 @@ export const projects = [
     ]
   },
   {
-    title: 'Life on Blocks',
+    title: 'HealthLedger',
     description: 'A blockchain-based system for secure storage and processing of patient health records. Ensures data transparency and security in healthcare information management.',
     image: 'https://imagizer.imageshack.com/img922/5580/GyWeKT.jpg?auto=format&fit=crop&q=70&w=800',
     tech: ['JavaScript', 'Python', 'Flask', 'MongoDB'],

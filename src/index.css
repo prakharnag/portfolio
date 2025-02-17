@@ -1,9 +1,27 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Ensure Tailwind CSS is installed and configured correctly */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
+/* Import slick-carousel styles */
+@import "../node_modules/slick-carousel/slick/slick.css";
+@import "../node_modules/slick-carousel/slick/slick-theme.css";
 
 html {
-    scroll-behavior: smooth;
-  }
-  
+  scroll-behavior: smooth;
+}
+
+/* Customize slick-carousel arrow styles */
+.slick-prev, .slick-next {
+  color: #000;
+  z-index: 1;
+}
+
+.slick-prev:hover, .slick-next:hover {
+  color: #000;
+}
+
+.slick-prev:before, .slick-next:before {
+  font-size: 24px;
+  color: #000;
+}

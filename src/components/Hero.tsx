@@ -64,10 +64,12 @@ const Hero = ({ toggleTheme, theme }: HeroProps) => {
               <ArrowRight className="ml-2 w-4 h-4" />
             </a>
             <a
-              href="#contact"
+              href={import.meta.env.VITE_RESUME_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center px-6 py-3 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
             >
-              Get in Touch
+            Resume
             </a>
           </div>
           {/* Theme Toggle */}
@@ -84,6 +86,5 @@ const Hero = ({ toggleTheme, theme }: HeroProps) => {
     </section>
   );
 };
-
 
 export default Hero;
