@@ -1,125 +1,101 @@
-import { useState, useEffect } from 'react';
-import { Mail, Linkedin, Github } from 'lucide-react';
-import $ from 'jquery';
+import { useState } from 'react';
+import emailjs from 'emailjs-com';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({ name: '', message: '' });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  useEffect(() => {
-    const handleFormSubmit = (event: JQuery.SubmitEvent) => {
-      event.preventDefault(); // prevent reload
-
-      if (isSubmitting) return; // Prevent duplicate submissions
-
-      setIsSubmitting(true);
-
-      const formData = new FormData(event.target as HTMLFormElement);
-      formData.append('service_id', import.meta.env.VITE_EMAILJS_SERVICE_ID);
-      formData.append('template_id', import.meta.env.VITE_EMAILJS_TEMPLATE_ID);
-      formData.append('user_id', import.meta.env.VITE_EMAILJS_USER_ID);
-      
-      $.ajax('https://api.emailjs.com/api/v1.0/email/send-form', {
-        type: 'POST',
-        data: formData,
-        contentType: false, // auto-detection
-        processData: false, // no need to parse formData to string
-      })
-        .done(() => {
-          setIsSubmitting(false);
-          setIsSubmitted(true);
-          setFormData({ name: '', message: '' });
-          setTimeout(() => setIsSubmitted(false), 2000); // Hide success message after 2 seconds
-        })
-        .fail((error) => {
-          setIsSubmitting(false);
-          alert('Oops... ' + JSON.stringify(error));
-        });
-    };
-
-    $('#myForm').on('submit', handleFormSubmit);
-
-    return () => {
-      $('#myForm').off('submit', handleFormSubmit);
-    };
-  }, [isSubmitting]);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log('Form submitted');
+    console.log('Service ID:', import.meta.env.VITE_EMAILJS_SERVICE_ID);
+    console.log('Template ID:', import.meta.env.VITE_EMAILJS_TEMPLATE_ID);
+    console.log('User ID:', import.meta.env.VITE_EMAILJS_USER_ID);
+
+    emailjs.sendForm(
+      import.meta.env.VITE_EMAILJS_SERVICE_ID!,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID!,
+      e.currentTarget,
+      import.meta.env.VITE_EMAILJS_USER_ID!
+    ).then(
+      (result) => {
+        console.log('Email sent:', result.text);
+        alert('Message sent successfully!');
+      },
+      (error) => {
+        console.log('Email error:', error.text);
+        alert('Failed to send the message, please try again.');
+      }
+    );
+    setFormData({
+      name: '',
+      email: '',
+      message: '',
+    });
   };
 
   return (
-    <section id="contact" className="py-16 bg-white bg-gray-100 dark:bg-gray-900 py-12">
+    <section id="contact" className="py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold mb-4">Get in Touch</h2>
-          <p className="text-white-600 mb-8 max-w-2xl mx-auto">
-            I'm always interested in hearing about new projects and opportunities.
-            Whether you have a question or just want to say hi, feel free to reach out!
-          </p>
-          
-          <div className="flex justify-center space-x-6 mb-8">
-            <a
-              href="mailto:prakharnagwork@gmail.com"
-              className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
-            >
-              <Mail className="w-5 h-5 text-gray-700" />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/prakhar-nag/"
-              className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
-            >
-              <Linkedin className="w-5 h-5 text-gray-700" />
-            </a>
-            <a
-              href="https://github.com/prakharnag"
-              className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
-            >
-              <Github className="w-5 h-5 text-gray-700" />
-            </a>
+        <h2 className="text-3xl font-bold text-center mb-12">Contact Me</h2>
+        <form onSubmit={handleSubmit} className="max-w-3xl mx-auto">
+          <div className="mb-4">
+            <label htmlFor="name" className="block font-medium mb-2">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md"
+              required
+            />
           </div>
-
-          <form id="myForm" className="max-w-lg mx-auto">
-            <div className="mb-4">
-              <label htmlFor="name" className="block text-gray-700 dark:text-gray-300 font-medium mb-2">
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 dark:bg-gray-800 dark:text-gray-300"
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="message" className="block text-gray-700 dark:text-gray-300 font-medium mb-2">
-                Message
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 dark:bg-gray-800 dark:text-gray-300"
-                rows={5}
-              ></textarea>
-            </div>
+          <div className="mb-4">
+            <label htmlFor="email" className="block font-medium mb-2">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="message" className="block font-medium mb-2">Message</label>
+            <textarea
+              placeholder='Your message here...'
+              id="message"
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md"
+              rows={6}
+              required
+            ></textarea>
+          </div>
+          <div className="text-center">
             <button
               type="submit"
-              disabled={isSubmitting}
-              className="w-full px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+              className="px-6 py-3 border border-transparent text-base font-medium rounded-md bg-blue-600 hover:bg-blue-700"
             >
-              {isSubmitting ? 'Sending...' : 'Send Message'}
+              Send Message
             </button>
-            {isSubmitted && <p className="mt-4 text-green-600">Message sent successfully!</p>}
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
     </section>
   );

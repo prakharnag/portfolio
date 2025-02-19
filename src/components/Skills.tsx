@@ -5,6 +5,7 @@ import 'slick-carousel/slick/slick-theme.css';
 const skills = [
   { name: 'Java', icon: './assets/images/java.png' },
   { name: 'Python', icon: './assets/images/python.png' },
+  { name: 'JavaScript', icon: './assets/images/javascript.png' },
   { name: 'Node.js', icon: './assets/images/node.png' },
   { name: 'PostgreSQL', icon: './assets/images/postgres.png' },
   { name: 'MySQL', icon: './assets/images/mysql.png' },
@@ -24,7 +25,7 @@ const Skills = () => {
     slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 4000,
+    autoplaySpeed: 2000, // Increase autoplay speed
     cssEase: 'linear',
     arrows: true,
     pauseOnHover: true,
@@ -55,14 +56,14 @@ const Skills = () => {
   };
 
   return (
-    <section id="skills" className="py-16 bg-gray-100 dark:bg-gray-800 py-12">
+    <section id="skills" className="py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-gray-100">Technical Skills</h2>
+        <h2 className="text-3xl font-bold text-center mb-12">Technical Skills</h2>
         <Slider {...settings}>
           {skills.map((skill, index) => (
             <div key={index} className="p-4">
-              <div className="bg-gray-100 dark:bg-gray-800 text-center">
-                <img src={skill.icon} alt={skill.name} className="w-24 h-24 mx-auto mb-4" />
+              <div className="text-center">
+                <img src={skill.icon} alt={skill.name} className="w-34 h-24 mx-auto mb-4" />
               </div>
             </div>
           ))}
