@@ -5,6 +5,17 @@ const DevJourney = () => {
 
   const workExperience = [
     {
+      year: "Jan 2025 - Present",
+      title: "Software Engineer",
+      company: "BreatheIT",
+      details: [      
+        "Refactored backend code by optimizing MySQL queries and simplifying complex logic, boosting query performance by 50%.",
+        "Designed and implemented microservices to transition from a monolithic architecture, doubling system scalability.",
+        "Constructed APIs with JWT authentication and cookie management, reducing database calls and improving response times by 30%.",
+        "Researched and evaluated caching strategies, including Redis, to enhance application performance and reduce latency."
+      ],
+    },
+    {
       year: "Aug 2023 - Dec 2024",
       title: "Graduate Developer",
       company: "Illinois Institute of Technology",
