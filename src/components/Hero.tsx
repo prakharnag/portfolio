@@ -53,7 +53,7 @@ const Hero = () => {
           {/* Buttons */}
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a
-              href="#projects"
+              href="projects"
               className="inline-flex items-center px-6 py-3 border border-gray-300 text-base font-medium rounded-md bg-white hover:bg-gray-50"
             >
               View My Work

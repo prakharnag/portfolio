@@ -44,19 +44,19 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-6">
-            <a href="#hero" className="nav-link">
+            <a href="home" className="nav-link">
               Home
             </a>
-            <a href="#dev-journey" className="nav-link">
+            <a href="timeline" className="nav-link">
               Career Timeline
             </a>
-            <a href="#projects" className="nav-link">
+            <a href="projects" className="nav-link">
               Projects
             </a>
-            <a href="#skills" className="nav-link">
+            <a href="skills" className="nav-link">
               Skills
             </a>
-            <a href="#contact" className="nav-link">
+            <a href="contact" className="nav-link">
               Contact
             </a>
           </nav>
@@ -88,19 +88,19 @@ const Header = () => {
       {isMenuOpen && (
         <div ref={menuRef} className="md:hidden">
           <div className="px-4 py-2 space-y-2">
-            <a href="#hero" className="block nav-link" onClick={handleLinkClick}>
+            <a href="home" className="block nav-link" onClick={handleLinkClick}>
               Home
             </a>
-            <a href="#dev-journey" className="block nav-link" onClick={handleLinkClick}>
+            <a href="timeline" className="block nav-link" onClick={handleLinkClick}>
               Career Timeline
             </a>
-            <a href="#projects" className="block nav-link" onClick={handleLinkClick}>
+            <a href="/projects" className="block nav-link" onClick={handleLinkClick}>
               Projects
             </a>
-            <a href="#skills" className="block nav-link" onClick={handleLinkClick}>
+            <a href="skills" className="block nav-link" onClick={handleLinkClick}>
               Skills
             </a>
-            <a href="#contact" className="block nav-link" onClick={handleLinkClick}>
+            <a href="contact" className="block nav-link" onClick={handleLinkClick}>
               Contact
             </a>
           </div>
