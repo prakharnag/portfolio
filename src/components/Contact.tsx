@@ -49,7 +49,7 @@ const Contact = () => {
     <section id="contact" className="py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-center mb-12">Contact Me</h2>
-        <form onSubmit={handleSubmit} className="max-w-3xl mx-auto">
+        <form onSubmit={handleSubmit} className="max-w-3xl mx-auto border border-gray-300 p-6 rounded-md">
           <div className="mb-4">
             <label htmlFor="name" className="block font-medium mb-2">Name</label>
             <input
@@ -90,7 +90,7 @@ const Contact = () => {
           <div className="text-center">
             <button
               type="submit"
-              className="px-6 py-3 border border-transparent text-base font-medium rounded-md bg-blue-600 hover:bg-blue-700"
+              className="inline-flex items-center px-6 py-3 border border-gray-300 text-base font-medium rounded-md bg-white hover:bg-gray-50"
             >
               Send Message
             </button>

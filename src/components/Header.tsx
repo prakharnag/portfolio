@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Menu, Github, Linkedin, Mail } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -11,6 +12,19 @@ const Header = () => {
   const handleLinkClick = () => {
     setIsMenuOpen(false);
   };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+      setIsMenuOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
     <header className="fixed w-full backdrop-blur-sm z-50 shadow-sm">
@@ -34,7 +48,7 @@ const Header = () => {
               Home
             </a>
             <a href="#dev-journey" className="nav-link">
-              About Me
+              Career Timeline
             </a>
             <a href="#projects" className="nav-link">
               Projects
@@ -72,13 +86,13 @@ const Header = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden">
+        <div ref={menuRef} className="md:hidden">
           <div className="px-4 py-2 space-y-2">
             <a href="#hero" className="block nav-link" onClick={handleLinkClick}>
               Home
             </a>
             <a href="#dev-journey" className="block nav-link" onClick={handleLinkClick}>
-              About Me
+              Career Timeline
             </a>
             <a href="#projects" className="block nav-link" onClick={handleLinkClick}>
               Projects

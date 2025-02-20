@@ -74,10 +74,10 @@ const DevJourney = () => {
   const data = activeTab === "work" ? workExperience : education;
 
   return (
-    <section id="dev-journey" className="py-16">
+    <section id="dev-journey" className="py-16" data-aos="fade-up">
       <div className="max-w-3xl mx-auto px-8 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-center mb-8">
-          My Developer Journey 🚀
+        Career Timeline 🚀
         </h2>
         <div className="flex justify-center mb-8">
           <button
@@ -105,7 +105,7 @@ const DevJourney = () => {
           {/* Central Line */}
           <div className="absolute inset-y-0 left-1/2 w-1 bg-black transform -translate-x-1/2 z-10"></div>
           {data.map((event, index) => (
-            <div key={index} className={`flex items-center mb-12 relative ${index % 2 === 0 ? 'flex-row-reverse' : ''}`}>
+            <div key={index} className={`flex items-center mb-12 relative ${index % 2 === 0 ? 'flex-row-reverse' : ''}`} data-aos="fade-up">
               {/* Left Section: Year Text */}
               <div className="relative flex-shrink-0 text-lg font-medium w-1/2 text-center md:text-right mb-4 md:mb-0 px-4">
                 {event.year}

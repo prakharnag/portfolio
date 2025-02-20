@@ -11,15 +11,16 @@ html {
 }
 
 body {
-  background-color: rgba(6, 95, 248, 0.204);
+  background-color: rgba(205, 213, 219, 0.304);
   color: #000000; /* Set text color to black */
   line-height: 1.625; /* leading-relaxed */
+  font-family: 'Courier New', Courier, monospace; /* Typewriter font */
   -webkit-font-smoothing: antialiased; /* antialiased */
   -moz-osx-font-smoothing: grayscale; /* antialiased */
 }
 
 header {
-  background-color: rgba(6, 95, 248, 0.204); /* Slate blue background color */
+  background-color: rgba(141, 155, 180, 0.172); /* Slate blue background color */
   color: #02060c; /* text-slate-400 */
   backdrop-filter: blur(10px); /* Apply blur effect */
   z-index: 50; /* Ensure header is on top */
@@ -31,7 +32,7 @@ header .nav-link {
 }
 
 header .nav-link:hover {
-  text-decoration: underline;
+  text-decoration: wavy;
 }
 
 header .menu-icon {

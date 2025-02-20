@@ -32,15 +32,15 @@ const TypewriterText = styled.span`
 
 const Hero = () => {
   return (
-    <section id="hero" className="pt-24 pb-12 sm:pt-32">
+    <section id="hero" className="pt-24 pb-12 sm:pt-32" data-aos="fade-up">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center flex flex-col items-center">
           {/* Title */}
-          <h1 className="text-4xl sm:text-6xl font-bold tracking-tight">
+          <h1 className="text-5xl sm:text-6xl font-bold tracking-tight">
             Software Engineer
             <br />
             <span>
-              <TypewriterText className="block text-blue-600">
+              <TypewriterText className="block text-gray-500">
                 &lt;Code, Debug, Optimize, Repeat /&gt;
               </TypewriterText>
             </span>
