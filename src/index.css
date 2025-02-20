@@ -1,4 +1,3 @@
-/* Ensure Tailwind CSS is installed and configured correctly */
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
@@ -9,6 +8,35 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+body {
+  background-color: rgba(205, 213, 219, 0.304);
+  color: #000000; /* Set text color to black */
+  line-height: 1.625; /* leading-relaxed */
+  font-family: 'Courier New', Courier, monospace; /* Typewriter font */
+  -webkit-font-smoothing: antialiased; /* antialiased */
+  -moz-osx-font-smoothing: grayscale; /* antialiased */
+}
+
+header {
+  background-color: rgba(141, 155, 180, 0.172); /* Slate blue background color */
+  color: #02060c; /* text-slate-400 */
+  backdrop-filter: blur(10px); /* Apply blur effect */
+  z-index: 50; /* Ensure header is on top */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow */
+}
+
+header .nav-link {
+  color: #000000; /* Set text color to black */
+}
+
+header .nav-link:hover {
+  text-decoration: wavy;
+}
+
+header .menu-icon {
+  color: #000000; /* Set text color to black */
 }
 
 /* Customize slick-carousel arrow styles */
@@ -25,3 +53,16 @@ html {
   font-size: 24px;
   color: #000;
 }
+
+/* Custom class for reduced width horizontal line */
+.hr-custom {
+  width: 50%; /* Adjust the width as needed */
+  margin: 2rem auto; /* Center the line and add vertical spacing */
+  border-top: 2px solid #d1d5db; /* Light gray color */
+}
+
+
+/*  background-color: rgba(232, 231, 193, 0.44);
+  background-color: rgba(232, 231, 193, 0.44);
+  
+*/

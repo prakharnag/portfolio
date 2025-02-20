@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Menu, Github, Linkedin, Mail } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -12,8 +13,21 @@ const Header = () => {
     setIsMenuOpen(false);
   };
 
+  const handleClickOutside = (event: MouseEvent) => {
+    if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+      setIsMenuOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
-    <header className="fixed w-full bg-white dark:bg-gray-800 backdrop-blur-sm z-50 shadow-sm">
+    <header className="fixed w-full backdrop-blur-sm z-50 shadow-sm">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-3 flex-wrap">
           {/* Profile Image with Text */}
@@ -23,46 +37,46 @@ const Header = () => {
               alt="Prakhar"
               className="w-12 h-12 rounded-full"
             />
-            <div className="text-lg font-bold text-black dark:text-white">
+            <div className="text-lg font-bold">
               Prakhar Nag
             </div>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-6">
-            <a href="#hero" className="text-black dark:text-white hover:underline">
+            <a href="#hero" className="nav-link">
               Home
             </a>
-            <a href="#dev-journey" className="text-black dark:text-white hover:underline">
-              About Me
+            <a href="#dev-journey" className="nav-link">
+              Career Timeline
             </a>
-            <a href="#projects" className="text-black dark:text-white hover:underline">
+            <a href="#projects" className="nav-link">
               Projects
             </a>
-            <a href="#skills" className="text-black dark:text-white hover:underline">
+            <a href="#skills" className="nav-link">
               Skills
             </a>
-            <a href="#contact" className="text-black dark:text-white hover:underline">
+            <a href="#contact" className="nav-link">
               Contact
             </a>
           </nav>
 
           {/* Social Links */}
           <div className="hidden md:flex space-x-4">
-            <a href="https://github.com/prakharnag" className="text-black dark:text-white">
+            <a href="https://github.com/prakharnag" className="nav-link">
               <Github className="w-5 h-5" />
             </a>
-            <a href="https://www.linkedin.com/in/prakhar-nag/" className="text-black dark:text-white">
+            <a href="https://www.linkedin.com/in/prakhar-nag/" className="nav-link">
               <Linkedin className="w-5 h-5" />
             </a>
-            <a href="mailto:prakharnagwork@gmail.com" className="text-black dark:text-white">
+            <a href="mailto:prakharnagwork@gmail.com" className="nav-link">
               <Mail className="w-5 h-5" />
             </a>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-black dark:text-white"
+            className="md:hidden menu-icon"
             onClick={handleMenuClick}
           >
             <Menu className="w-6 h-6" />
@@ -72,21 +86,21 @@ const Header = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white dark:bg-gray-800">
+        <div ref={menuRef} className="md:hidden">
           <div className="px-4 py-2 space-y-2">
-            <a href="#hero" className="block text-black dark:text-white hover:underline" onClick={handleLinkClick}>
+            <a href="#hero" className="block nav-link" onClick={handleLinkClick}>
               Home
             </a>
-            <a href="#dev-journey" className="block text-black dark:text-white hover:underline" onClick={handleLinkClick}>
-              About Me
+            <a href="#dev-journey" className="block nav-link" onClick={handleLinkClick}>
+              Career Timeline
             </a>
-            <a href="#projects" className="block text-black dark:text-white hover:underline" onClick={handleLinkClick}>
+            <a href="#projects" className="block nav-link" onClick={handleLinkClick}>
               Projects
             </a>
-            <a href="#skills" className="block text-black dark:text-white hover:underline" onClick={handleLinkClick}>
+            <a href="#skills" className="block nav-link" onClick={handleLinkClick}>
               Skills
             </a>
-            <a href="#contact" className="block text-black dark:text-white hover:underline" onClick={handleLinkClick}>
+            <a href="#contact" className="block nav-link" onClick={handleLinkClick}>
               Contact
             </a>
           </div>
