@@ -21,12 +21,13 @@ const TypewriterText = styled.span`
   overflow: hidden;
   white-space: nowrap; /* Ensure no wrapping initially */
   border-right: 0.15em solid #000; /* Cursor effect */
-  animation: ${typewriter} 6s steps(30) infinite, ${blink} 12s step-end infinite;
+  animation: ${typewriter} 6s steps(30) infinite, ${blink} 0.75s step-end infinite;
   font-size: 1.75rem; /* Reduce font size */
   
   /* Wrapping behavior when content exceeds container width */
   @media (max-width: 550px) {
     white-space: normal; /* Allow wrapping when the container is too small */
+    animation: ${typewriter} 6s steps(30) infinite, ${blink} 0.75s step-end infinite; /* Ensure animation continues smoothly */
   }
 `;
 
