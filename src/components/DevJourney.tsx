@@ -75,7 +75,7 @@ const DevJourney = () => {
 
   return (
     <section id="dev-journey" className="py-16" data-aos="fade-up">
-      <div className="max-w-3xl mx-auto px-8 sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto px-8 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-center mb-8">
         Career Timeline 🚀
         </h2>
