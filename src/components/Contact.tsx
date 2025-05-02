@@ -18,11 +18,6 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('Form submitted');
-    console.log('Service ID:', import.meta.env.VITE_EMAILJS_SERVICE_ID);
-    console.log('Template ID:', import.meta.env.VITE_EMAILJS_TEMPLATE_ID);
-    console.log('User ID:', import.meta.env.VITE_EMAILJS_USER_ID);
-
     emailjs.sendForm(
       import.meta.env.VITE_EMAILJS_SERVICE_ID!,
       import.meta.env.VITE_EMAILJS_TEMPLATE_ID!,
@@ -30,11 +25,9 @@ const Contact = () => {
       import.meta.env.VITE_EMAILJS_USER_ID!
     ).then(
       (result) => {
-        console.log('Email sent:', result.text);
         alert('Message sent successfully!');
       },
       (error) => {
-        console.log('Email error:', error.text);
         alert('Failed to send the message, please try again.');
       }
     );
@@ -46,43 +39,48 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-center mb-12">Contact Me</h2>
-        <form onSubmit={handleSubmit} className="max-w-3xl mx-auto border border-gray-300 p-6 rounded-md">
-          <div className="mb-4">
-            <label htmlFor="name" className="block font-medium mb-2">Name</label>
+    <section id="contact" className=".section-bg">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-4xl font-bold text-center mb-12">Contact Me</h2>
+        <form
+          onSubmit={handleSubmit}
+          className="bg-white/10 backdrop-blur-lg rounded-xl p-8 shadow-md space-y-6"
+        >
+          <div>
+            <label htmlFor="name" className="block mb-2 font-medium">Name</label>
             <input
               type="text"
               id="name"
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md"
+              className="w-full px-4 py-3 rounded-md bg-white/20 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white"
+              placeholder="Your name"
               required
             />
           </div>
-          <div className="mb-4">
-            <label htmlFor="email" className="block font-medium mb-2">Email</label>
+          <div>
+            <label htmlFor="email" className="block mb-2 font-medium">Email</label>
             <input
               type="email"
               id="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md"
+              className="w-full px-4 py-3 rounded-md bg-white/20 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white"
+              placeholder="you@example.com"
               required
             />
           </div>
-          <div className="mb-4">
-            <label htmlFor="message" className="block font-medium mb-2">Message</label>
+          <div>
+            <label htmlFor="message" className="block mb-2 font-medium">Message</label>
             <textarea
-              placeholder='Your message here...'
               id="message"
               name="message"
               value={formData.message}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md"
+              className="w-full px-4 py-3 rounded-md bg-white/20 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white"
+              placeholder="Your message..."
               rows={6}
               required
             ></textarea>
@@ -90,7 +88,7 @@ const Contact = () => {
           <div className="text-center">
             <button
               type="submit"
-              className="inline-flex items-center px-6 py-3 border border-gray-300 text-base font-medium rounded-md bg-white hover:bg-gray-50"
+              className="inline-block bg-white text-blue-600 font-semibold px-6 py-3 rounded-lg shadow hover:bg-blue-100 transition duration-300"
             >
               Send Message
             </button>

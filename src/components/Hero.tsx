@@ -33,7 +33,7 @@ const TypewriterText = styled.span`
 
 const Hero = () => {
   return (
-    <section id="hero" className="pt-24 pb-12 sm:pt-32" data-aos="fade-up">
+    <section id="hero" className=".section-bg" data-aos="fade-up">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center flex flex-col items-center">
           {/* Title */}

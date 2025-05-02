@@ -1,68 +1,123 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-
-/* Import slick-carousel styles */
 @import "../node_modules/slick-carousel/slick/slick.css";
 @import "../node_modules/slick-carousel/slick/slick-theme.css";
 
+/* Global Reset & Base Theme */
 html {
   scroll-behavior: smooth;
 }
 
-body {
-  background-color: rgba(205, 213, 219, 0.304);
-  color: #000000; /* Set text color to black */
-  line-height: 1.625; /* leading-relaxed */
-  font-family: 'Courier New', Courier, monospace; /* Typewriter font */
-  -webkit-font-smoothing: antialiased; /* antialiased */
-  -moz-osx-font-smoothing: grayscale; /* antialiased */
+
+/* Reusable Section Background */
+.section-bg {
+  @apply bg-gradient-to-br from-blue-400/80 to-blue-600/80 text-black py-20;
 }
 
+/* Header */
 header {
-  background-color: rgba(141, 155, 180, 0.172); /* Slate blue background color */
-  color: #02060c; /* text-slate-400 */
-  backdrop-filter: blur(10px); /* Apply blur effect */
-  z-index: 50; /* Ensure header is on top */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow */
+  @apply bg-gradient-to-r from-cyan-500 to-blue-500 text-black backdrop-blur z-50 shadow-md;
 }
-
-header .nav-link {
-  color: #000000; /* Set text color to black */
-}
-
-header .nav-link:hover {
-  text-decoration: wavy;
-}
-
+header .nav-link,
 header .menu-icon {
-  color: #000000; /* Set text color to black */
+  @apply text-black transition-colors duration-300;
+}
+header .nav-link:hover,
+header .menu-icon:hover {
+  @apply text-yellow-400;
 }
 
-/* Customize slick-carousel arrow styles */
-.slick-prev, .slick-next {
-  color: #000;
-  z-index: 1;
+/* Buttons */
+button,
+a.button {
+  @apply bg-blue-500 text-black px-6 py-3 text-base rounded-md border-none transition-transform duration-200 hover:bg-blue-600 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-300;
 }
 
-.slick-prev:hover, .slick-next:hover {
-  color: #000;
+/* Hero Section */
+#hero {
+  @apply pt-32 pb-24 text-black text-center;
+}
+#hero h1 {
+  @apply text-5xl font-bold drop-shadow-md;
+}
+#hero p {
+  @apply text-xl mt-4;
+}
+#hero a {
+  @apply bg-blue-400 hover:bg-blue-300 text-black py-3 px-5 rounded-md transition-transform transform hover:scale-105;
 }
 
-.slick-prev:before, .slick-next:before {
-  font-size: 24px;
-  color: #000;
+/* Timeline Section */
+#dev-journey {
+  @apply py-16 text-black;
+}
+#dev-journey button {
+  @apply transition-transform duration-200 mx-2 hover:bg-blue-100 hover:scale-105;
+}
+button.active {
+  @apply bg-blue-500 text-black;
+}
+button.inactive {
+  @apply bg-slate-200 text-slate-700;
 }
 
-/* Custom class for reduced width horizontal line */
-.hr-custom {
-  width: 50%; /* Adjust the width as needed */
-  margin: 2rem auto; /* Center the line and add vertical spacing */
-  border-top: 2px solid #d1d5db; /* Light gray color */
+/* Timeline Layout */
+.timeline-wrapper {
+  @apply relative ml-8 pl-4 border-l-4 border-blue-400;
+}
+.timeline-event {
+  @apply relative mb-12 animate-fadeInUp opacity-0;
+}
+.timeline-bullet {
+  @apply absolute -left-4 top-2 w-5 h-5 bg-black border-4 border-blue-400 rounded-full z-10;
+}
+.timeline-year {
+  @apply text-base font-semibold text-black mb-1;
+}
+.timeline-card {
+  @apply bg-black text-slate-800 px-8 py-6 rounded-lg shadow-md ml-8 max-w-xl;
+}
+.timeline-card h3 {
+  @apply text-xl font-semibold mb-1;
+}
+.timeline-card p {
+  @apply text-base font-medium mb-3;
+}
+.timeline-card ul {
+  @apply list-disc mt-3 pl-6;
+}
+.timeline-card ul li {
+  @apply mb-2 text-sm text-slate-700 leading-relaxed;
+}
+.timeline-card ul li::marker {
+  color: #4a90e2;
 }
 
+/* Footer */
+footer {
+  @apply bg-slate-800 text-slate-200 py-8 text-center;
+}
+footer a {
+  @apply text-blue-400 transition-colors duration-200;
+}
+footer a:hover {
+  @apply text-blue-300;
+}
 
-/*  background-color: rgba(232, 231, 193, 0.44);
-  background-color: rgba(232, 231, 193, 0.44);
-  
-*/
+/* Animations */
+@layer utilities {
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fadeInUp {
+    animation: fadeInUp 0.6s ease forwards;
+  }
+}

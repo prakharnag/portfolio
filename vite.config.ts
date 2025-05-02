@@ -15,4 +15,7 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
+  css: {
+    postcss: './postcss.config.js', // Reference to your postcss config file
+  },
 });

@@ -8,7 +8,7 @@ const DevJourney = () => {
       year: "Jan 2025 - Present",
       title: "Software Engineer",
       company: "BreatheIT",
-      details: [      
+      details: [
         "Refactored backend code by optimizing MySQL queries and simplifying complex logic, boosting query performance by 50%.",
         "Designed and implemented microservices to transition from a monolithic architecture, doubling system scalability.",
         "Constructed APIs with JWT authentication and cookie management, reducing database calls and improving response times by 30%.",
@@ -74,55 +74,50 @@ const DevJourney = () => {
   const data = activeTab === "work" ? workExperience : education;
 
   return (
-    <section id="dev-journey" className="py-16" data-aos="fade-up">
-      <div className="max-w-4xl mx-auto px-8 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-center mb-8">
-        Career Timeline 🚀
-        </h2>
-        <div className="flex justify-center mb-8">
+    <section id="dev-journey" className=".section-bg" data-aos="fade-up">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl font-bold text-center mb-10">Career Timeline 🚀</h2>
+
+        {/* Tabs */}
+        <div className="flex justify-center mb-10">
           <button
             onClick={() => setActiveTab("work")}
             className={`px-6 py-3 text-lg font-semibold rounded-l-lg ${
-              activeTab === "work"
-                ? "border border-gray-300 rounded-md bg-white hover:bg-gray-50"
-                : "text-black-700"
-            } transition duration-300 z-20`}
+              activeTab === "work" ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-800"
+            }`}
           >
             Work Experience
           </button>
           <button
             onClick={() => setActiveTab("education")}
             className={`px-6 py-3 text-lg font-semibold rounded-r-lg ${
-              activeTab === "education"
-                ? " border border-gray-300 rounded-md bg-white hover:bg-gray-50"
-                : "bg-black-300 text-black-700"
-            } transition duration-300 z-20`}
+              activeTab === "education" ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-800"
+            }`}
           >
             Education
           </button>
         </div>
-        <div className="relative">
-          {/* Central Line */}
-          <div className="absolute inset-y-0 left-1/2 w-1 bg-black transform -translate-x-1/2 z-10"></div>
+
+        {/* Timeline */}
+        <div className="relative border-l-4 border-blue-500 pl-8">
           {data.map((event, index) => (
-            <div key={index} className={`flex items-center mb-12 relative ${index % 2 === 0 ? 'flex-row-reverse' : ''}`} data-aos="fade-up">
-              {/* Left Section: Year Text */}
-              <div className="relative flex-shrink-0 text-lg font-medium w-1/2 text-center md:text-right mb-4 md:mb-0 px-4">
-                {event.year}
-              </div>
-              {/* Bullet Symbol on Central Line */}
-              <div className="absolute w-8 h-8 bg-black rounded-full border-4 border-white flex items-center justify-center left-1/2 transform -translate-x-1/2 z-20"></div>
-              {/* Right Section: Data Card */}
-              <div className="relative mt-6 md:mt-0 w-full md:w-1/2 p-6 border rounded-lg shadow-lg ml-4">
-                <h3 className="text-xl font-semibold">
-                  {event.title}
-                </h3>
-                <p className="font-medium mt-2">
-                  {event.company}
-                </p>
-                <ul className="mt-4 list-disc space-y-2 pl-5">
+            <div
+              key={index}
+              className="mb-12 relative"
+              data-aos="fade-up"
+              data-aos-delay={index * 100}
+            >
+              {/* Marker */}
+              <div className="absolute -left-[1.15rem] top-2 w-5 h-5 bg-blue-500 border-4 border-white rounded-full shadow-md z-10"></div>
+
+              {/* Card */}
+              <div className="bg-white p-6 rounded-lg shadow-md ml-2">
+                <p className="text-sm text-gray-500 mb-1">{event.year}</p>
+                <h3 className="text-xl font-semibold text-gray-900">{event.title}</h3>
+                <p className="font-medium text-gray-700 mb-3">{event.company}</p>
+                <ul className="list-disc pl-5 space-y-2 text-gray-700">
                   {event.details.map((detail, idx) => (
-                    <li key={idx} className="text-lg font-medium leading-6">{detail}</li>
+                    <li key={idx} className="text-sm leading-6">{detail}</li>
                   ))}
                 </ul>
               </div>

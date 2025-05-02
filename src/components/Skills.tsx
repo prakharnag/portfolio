@@ -25,9 +25,9 @@ const Skills = () => {
     slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2000, // Increase autoplay speed
+    autoplaySpeed: 2000,
     cssEase: 'linear',
-    arrows: true,
+    arrows: false,
     pauseOnHover: true,
     pauseOnFocus: true,
     responsive: [
@@ -35,35 +35,37 @@ const Skills = () => {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 1,
         },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 1,
         },
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1,
         },
       },
     ],
   };
 
   return (
-    <section id="skills" className="py-16">
+    <section id="skills" className=".section-bg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-center mb-12">Technical Skills</h2>
+        <h2 className="text-4xl font-bold text-center mb-12">Technical Skills</h2>
         <Slider {...settings}>
           {skills.map((skill, index) => (
             <div key={index} className="p-4">
-              <div className="text-center">
-                <img src={skill.icon} alt={skill.name} className="w-34 h-24 mx-auto mb-4" />
+              <div className="bg-transparent text-white p-6 flex flex-col items-center justify-center shadow hover:shadow-lg hover:scale-[1.03] transition-transform duration-300">
+                <img
+                  src={skill.icon}
+                  alt={skill.name}
+                  className="w-20 h-20 object-contain mb-3"
+                />
+                <p className="text-sm">{skill.name}</p>
               </div>
             </div>
           ))}
