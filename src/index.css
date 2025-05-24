@@ -1,123 +1,189 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 @import "../node_modules/slick-carousel/slick/slick.css";
 @import "../node_modules/slick-carousel/slick/slick-theme.css";
+@import "./styles/animations.css";
 
 /* Global Reset & Base Theme */
-html {
-  scroll-behavior: smooth;
+:root {
+  --win98-bg: #c0c0c0;
+  --win98-border: #000000;
+  --win98-highlight: #ffffff;
+  --win98-shadow: #808080;
+  --win98-text: #000000;
+  --win98-blue: #000080;
 }
 
+html {
+  scroll-behavior: smooth;
+  background-color: var(--win98-bg);
+  font-family: 'VT323', monospace;
+  color: var(--win98-text);
+  line-height: 1.5;
+}
+
+body {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABdJREFUeNpi+P//fwMTAwMDEwMDAwMAEQQEAAQoAABk5wXKAAAAAElFTkSuQmCC");
+  background-color: var(--win98-bg);
+}
 
 /* Reusable Section Background */
 .section-bg {
-  @apply bg-gradient-to-br from-blue-400/80 to-blue-600/80 text-black py-20;
+  @apply bg-[#c0c0c0] text-black py-20 border-2 border-[#000000];
+  box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf, inset -2px -2px grey, inset 2px 2px #fff;
 }
 
-/* Header */
-header {
-  @apply bg-gradient-to-r from-cyan-500 to-blue-500 text-black backdrop-blur z-50 shadow-md;
-}
-header .nav-link,
-header .menu-icon {
-  @apply text-black transition-colors duration-300;
-}
-header .nav-link:hover,
-header .menu-icon:hover {
-  @apply text-yellow-400;
+/* Windows 98 Button Style */
+.win98-button {
+  @apply bg-[#c0c0c0] border-2 border-[#000000] shadow-[2px_2px_0px_0px_#808080] 
+         hover:bg-[#d4d4d4] active:shadow-none active:translate-x-[2px] active:translate-y-[2px]
+         transition-all duration-100;
 }
 
-/* Buttons */
-button,
-a.button {
-  @apply bg-blue-500 text-black px-6 py-3 text-base rounded-md border-none transition-transform duration-200 hover:bg-blue-600 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-300;
+.win98-button:active {
+  box-shadow: inset -1px -1px #fff, inset 1px 1px #0a0a0a, inset -2px -2px #dfdfdf, inset 2px 2px grey;
+}
+
+/* Windows 98 Window Style */
+.win98-window {
+  @apply bg-[#c0c0c0] border-2 border-[#000000] shadow-[2px_2px_0px_0px_#808080] p-1;
+}
+
+.win98-title-bar {
+  @apply bg-[#000080] text-white px-2 py-1 flex items-center justify-between;
+}
+
+/* Windows 98 Input Style */
+.win98-input {
+  @apply bg-white border-2 border-[#000000] px-2 py-1;
+  box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf;
+}
+
+.win98-input:focus {
+  @apply outline-none border-[#000080];
 }
 
 /* Hero Section */
 #hero {
   @apply pt-32 pb-24 text-black text-center;
 }
+
 #hero h1 {
-  @apply text-5xl font-bold drop-shadow-md;
+  @apply text-5xl font-bold;
+  text-shadow: 2px 2px 0px #fff;
 }
+
 #hero p {
   @apply text-xl mt-4;
 }
-#hero a {
-  @apply bg-blue-400 hover:bg-blue-300 text-black py-3 px-5 rounded-md transition-transform transform hover:scale-105;
+
+/* Projects Section */
+.project-card {
+  @apply win98-window p-4 mb-4 transition-all duration-300 hover:scale-[1.02];
 }
 
-/* Timeline Section */
-#dev-journey {
-  @apply py-16 text-black;
-}
-#dev-journey button {
-  @apply transition-transform duration-200 mx-2 hover:bg-blue-100 hover:scale-105;
-}
-button.active {
-  @apply bg-blue-500 text-black;
-}
-button.inactive {
-  @apply bg-slate-200 text-slate-700;
+.project-card:hover {
+  @apply shadow-[4px_4px_0px_0px_#808080];
 }
 
-/* Timeline Layout */
-.timeline-wrapper {
-  @apply relative ml-8 pl-4 border-l-4 border-blue-400;
+.project-title {
+  @apply text-xl font-bold text-[#000080] mb-2;
 }
-.timeline-event {
-  @apply relative mb-12 animate-fadeInUp opacity-0;
+
+.project-description {
+  @apply text-gray-800 mb-4;
 }
-.timeline-bullet {
-  @apply absolute -left-4 top-2 w-5 h-5 bg-black border-4 border-blue-400 rounded-full z-10;
+
+.project-tech {
+  @apply flex flex-wrap gap-2 mb-4;
 }
-.timeline-year {
-  @apply text-base font-semibold text-black mb-1;
+
+.tech-tag {
+  @apply bg-[#c0c0c0] border border-[#000000] px-2 py-1 text-sm;
 }
-.timeline-card {
-  @apply bg-black text-slate-800 px-8 py-6 rounded-lg shadow-md ml-8 max-w-xl;
+
+.project-links {
+  @apply flex gap-2;
 }
-.timeline-card h3 {
-  @apply text-xl font-semibold mb-1;
+
+.project-link {
+  @apply win98-button px-3 py-1 text-sm;
 }
-.timeline-card p {
-  @apply text-base font-medium mb-3;
-}
-.timeline-card ul {
-  @apply list-disc mt-3 pl-6;
-}
-.timeline-card ul li {
-  @apply mb-2 text-sm text-slate-700 leading-relaxed;
-}
-.timeline-card ul li::marker {
-  color: #4a90e2;
+
+/* Skills Section */
+.skill-item {
+  @apply bg-[#c0c0c0] border-2 border-[#000000] p-2;
+  box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf;
 }
 
 /* Footer */
 footer {
-  @apply bg-slate-800 text-slate-200 py-8 text-center;
-}
-footer a {
-  @apply text-blue-400 transition-colors duration-200;
-}
-footer a:hover {
-  @apply text-blue-300;
+  @apply bg-[#c0c0c0] text-black py-8 text-center border-t-2 border-[#000000];
+  box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff;
 }
 
-/* Animations */
-@layer utilities {
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  .animate-fadeInUp {
-    animation: fadeInUp 0.6s ease forwards;
-  }
+footer a {
+  @apply text-[#000080] transition-colors duration-200;
+}
+
+footer a:hover {
+  @apply text-[#1084d0];
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+::-webkit-scrollbar-track {
+  background: #c0c0c0;
+  border: 1px solid #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c0c0c0;
+  border: 1px solid #000000;
+  box-shadow: inset -1px -1px #808080, inset 1px 1px #ffffff;
+}
+
+::-webkit-scrollbar-button {
+  background: #c0c0c0;
+  border: 1px solid #000000;
+  box-shadow: inset -1px -1px #808080, inset 1px 1px #ffffff;
+  width: 16px;
+  height: 16px;
+}
+
+/* Contact Form Styles */
+.contact-form {
+  @apply win98-window p-6 max-w-2xl mx-auto;
+}
+
+.form-group {
+  @apply mb-4;
+}
+
+.form-label {
+  @apply block text-sm font-bold mb-1;
+}
+
+.form-input {
+  @apply win98-input w-full;
+}
+
+.form-textarea {
+  @apply win98-input w-full h-32 resize-none;
+}
+
+.submit-button {
+  @apply win98-button px-6 py-2 text-lg;
+}
+
+/* Section Headers */
+.section-header {
+  @apply text-3xl font-bold text-[#000080] mb-8 text-center;
 }

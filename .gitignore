@@ -7,6 +7,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies
 node_modules
 dist
 dist-ssr
@@ -23,8 +24,19 @@ dist-ssr
 *.sln
 *.sw?
 
-# Environment variables
+# Environment files
 .env
+.env.*
+!.env.example
+
+# Build files
+.vite
+build
+coverage
+
+# Cache
+.cache
+.eslintcache
 
 # assets
 /assets

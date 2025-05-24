@@ -1,5 +1,16 @@
-export const projects = [
+export interface Project {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  tech: string[];
+  github: string;
+  achievements: string[];
+}
+
+export const projects: Project[] = [
   {
+    id: 'intellibot',
     title: 'IntelliBot',
     description: 'An AI-driven virtual assistant that optimizes backend services for improved customer support efficiency. Utilizes advanced AI models and cloud infrastructure for reliable performance.',
     image: 'https://imagizer.imageshack.com/img924/6008/18YkJJ.png?auto=format&fit=crop&q=80&w=800',
@@ -12,6 +23,7 @@ export const projects = [
     ]
   },
   {
+    id: 'intelliquery',
     title: 'IntelliQuery',
     description: 'A semantic search application leveraging AI-driven vector search to enhance search relevance. Built with scalability and performance in mind using modern cloud technologies.',
     image: 'https://imagizer.imageshack.com/img922/3039/WO0xxB.png?auto=format&fit=crop&q=80&w=800',
@@ -24,6 +36,7 @@ export const projects = [
     ]
   },
   {
+    id: 'kitchencraft',
     title: 'KitchenCraft',
     description: 'A mobile application for creating, managing, and searching recipes. Integrates with Spoonacular API to provide comprehensive recipe data and seamless user experience.',
     image: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=800',
@@ -36,6 +49,7 @@ export const projects = [
     ]
   },
   {
+    id: 'bookcrawlerx',
     title: 'BookCrawlerX',
     description: 'An efficient web scraper for book data collection and analysis. Implements machine learning algorithms to optimize crawling and ensure accurate data retrieval.',
     image: 'https://images.unsplash.com/photo-1526243741027-444d633d7365?auto=format&fit=crop&q=80&w=800',
@@ -48,6 +62,7 @@ export const projects = [
     ]
   },
   {
+    id: 'healthledger',
     title: 'HealthLedger',
     description: 'A blockchain-based system for secure storage and processing of patient health records. Ensures data transparency and security in healthcare information management.',
     image: 'https://imagizer.imageshack.com/img922/5580/GyWeKT.jpg?auto=format&fit=crop&q=70&w=800',
