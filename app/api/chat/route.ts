@@ -8,7 +8,9 @@ if (!process.env.OPENAI_API_KEY) {
 }
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
+  apiKey: process.env.OPENAI_API_KEY,
+  maxRetries: 3,
+  timeout: 30000, // 30 seconds
 });
 
 export async function POST(req: Request) {
@@ -29,28 +31,48 @@ export async function POST(req: Request) {
     const systemPrompt = generateSystemPrompt();
     console.log('Generated system prompt length:', systemPrompt.length);
 
-    const completion = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: [
-        { role: 'system', content: systemPrompt },
-        ...messages
-      ],
-    });
+    try {
+      const completion = await openai.chat.completions.create({
+        model: "gpt-3.5-turbo",
+        messages: [
+          { role: 'system', content: systemPrompt },
+          ...messages
+        ],
+        temperature: 0.7,
+        max_tokens: 1000,
+      });
 
-    if (!completion.choices[0]?.message?.content) {
-      console.error('No response from OpenAI:', completion);
+      if (!completion.choices[0]?.message?.content) {
+        console.error('No response from OpenAI:', completion);
+        return Response.json(
+          { error: 'No response from OpenAI' },
+          { status: 500 }
+        );
+      }
+
+      return Response.json({ 
+        message: completion.choices[0].message.content 
+      });
+    } catch (apiError) {
+      console.error('OpenAI API Error:', apiError);
+      if (apiError instanceof Error) {
+        console.error('API Error details:', {
+          message: apiError.message,
+          stack: apiError.stack,
+          name: apiError.name
+        });
+      }
       return Response.json(
-        { error: 'No response from OpenAI' },
+        { 
+          error: 'Failed to get response from OpenAI', 
+          details: apiError instanceof Error ? apiError.message : 'Unknown error',
+          type: apiError instanceof Error ? apiError.name : 'Unknown'
+        },
         { status: 500 }
       );
     }
-
-    return Response.json({ 
-      message: completion.choices[0].message.content 
-    });
   } catch (error) {
-    console.error('OpenAI API Error:', error);
-    // Log the full error details
+    console.error('Request processing error:', error);
     if (error instanceof Error) {
       console.error('Error details:', {
         message: error.message,
@@ -60,7 +82,7 @@ export async function POST(req: Request) {
     }
     return Response.json(
       { 
-        error: 'Failed to get response from OpenAI', 
+        error: 'Failed to process request', 
         details: error instanceof Error ? error.message : 'Unknown error',
         type: error instanceof Error ? error.name : 'Unknown'
       },

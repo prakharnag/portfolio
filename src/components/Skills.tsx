@@ -6,7 +6,6 @@ import { FaFolder, FaFolderOpen } from 'react-icons/fa';
 
 interface Skill {
   name: string;
-  level: number;
   icon: string;
 }
 
@@ -19,34 +18,33 @@ export const skillCategories: SkillCategory[] = [
   {
     title: 'Frontend',
     skills: [
-      { name: 'React', level: 90, icon: '/assets/images/react.png' },
-      { name: 'TypeScript', level: 85, icon: '/assets/images/typescript.png' },
-      { name: 'Next.js', level: 80, icon: '/assets/images/nextjs.png' },
-      { name: 'Tailwind CSS', level: 85, icon: '/assets/images/tailwind.png' },
+      { name: 'React', icon: '/assets/images/react.png' },
+      { name: 'TypeScript', icon: '/assets/images/typescript.png' },
+      { name: 'Next.js', icon: '/assets/images/nextjs.png' },
+      { name: 'Tailwind CSS', icon: '/assets/images/tailwind.png' },
     ],
   },
   {
     title: 'Backend',
     skills: [
-      { name: 'Node.js', level: 85, icon: '/assets/images/node.png' },
-      { name: 'Pstgres', level: 80, icon: '/assets/images/postgres.png' },
-      { name: 'SQL', level: 75, icon: '/assets/images/mysql.png' },
-      { name: 'MongoDB', level: 70, icon: '/assets/images/mongodb.png' },
+      { name: 'Node.js', icon: '/assets/images/node.png' },
+      { name: 'Postgres', icon: '/assets/images/postgres.png' },
+      { name: 'SQL', icon: '/assets/images/mysql.png' },
+      { name: 'MongoDB', icon: '/assets/images/mongodb.png' },
     ],
   },
   {
     title: 'Mobile',
     skills: [
-      { name: 'Flutter', level: 80, icon: '/assets/images/flutter.png' },
-      { name: 'Dart', level: 75, icon: '/assets/images/dart.png' },
+      { name: 'Flutter', icon: '/assets/images/flutter.png' },
+      { name: 'Dart', icon: '/assets/images/dart.png' },
     ],
   },
   {
     title: 'Tools & Others',
     skills: [
-
-      { name: 'Docker', level: 70, icon: '/assets/images/docker.png' },
-      { name: 'AWS', level: 65, icon: '/assets/images/aws.png' },
+      { name: 'Docker', icon: '/assets/images/docker.png' },
+      { name: 'AWS', icon: '/assets/images/aws.png' },
     ],
   },
 ];
@@ -116,12 +114,6 @@ const Skills: React.FC = () => {
                         className="w-16 h-16 object-contain"
                       />
                       <span className="text-xs text-center">{skill.name}</span>
-                      <div className="w-full bg-[#c0c0c0] rounded-full h-1.5">
-                        <div
-                          className="bg-[#000080] h-1.5 rounded-full"
-                          style={{ width: `${skill.level}%` }}
-                        ></div>
-                      </div>
                     </div>
                   ))}
               </div>

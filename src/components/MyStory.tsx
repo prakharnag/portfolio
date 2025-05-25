@@ -15,14 +15,14 @@ const MyStory: React.FC = () => {
             <h2 className="text-2xl font-bold mb-6 text-[#000080]">My Story</h2>
             <div className="space-y-4">
               <p className="leading-6">
-                👋 Hey! I'm Prakhar — a software engineer who loves turning ideas into powerful products. 
+                Hey! I'm Prakhar — a software engineer who loves turning ideas into powerful products. 
                 My journey began on a dusty old Pentium 4, playing games and wondering: "How the heck are these even made?" 
                 That curiosity sparked my passion for coding. 
               </p>
               
               <p className="leading-6">
                 Today, I'm a full-stack developer, crafting seamless experiences with TypeScript, React, Node.js, SQL, and Python. 
-                With a Master's in Computer Science from Illinois Tech, Chicago, IL, I love tackling complex challenges and turning them into elegant solutions.
+                I earned my Master’s in Computer Science from Illinois Tech, Chicago, where I also got mentor students on software development and its best practices.
               </p>
 
               <p className="leading-6">
