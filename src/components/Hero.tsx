@@ -60,7 +60,7 @@ const Hero = () => {
               <ArrowRight className="ml-2 w-4 h-4" />
             </a>
             <a
-              href={import.meta.env.VITE_RESUME_URL}
+              href={process.env.NEXT_PUBLIC_RESUME_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center px-6 py-3 border border-gray-300 text-base font-medium rounded-md bg-white hover:bg-gray-50"
