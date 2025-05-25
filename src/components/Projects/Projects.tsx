@@ -4,10 +4,12 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaFolder, FaFolderOpen, FaGithub } from 'react-icons/fa';
 import { projects } from './projectsData';
+import { useClickSound } from '../../hooks/useClickSound';
 
 const Projects: React.FC = () => {
   const [activeProject, setActiveProject] = useState<string | null>(null);
   const [imagesLoaded, setImagesLoaded] = useState<{ [key: string]: boolean }>({});
+  const handleClick = useClickSound();
 
   // Preload all project images
   useEffect(() => {
@@ -24,6 +26,7 @@ const Projects: React.FC = () => {
   }, []);
 
   const toggleProject = (id: string) => {
+    handleClick(new MouseEvent('click') as any);
     setActiveProject(activeProject === id ? null : id);
   };
 
@@ -123,6 +126,7 @@ const Projects: React.FC = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="win98-button px-4 py-1 flex items-center space-x-2"
+                      onClick={handleClick}
                     >
                       <FaGithub className="text-lg" />
                       <span>View on GitHub</span>

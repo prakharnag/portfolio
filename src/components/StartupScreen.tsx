@@ -66,7 +66,7 @@ const StartupScreen: React.FC<StartupScreenProps> = ({ onComplete }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-50 flex items-center justify-center bg-[#000080] cursor-[url('/assets/cursors/win98-cursor.png'),_auto]"
+        className="fixed inset-0 z-50 flex items-center justify-center bg-[#000080]"
       >
         {!hasStarted ? (
           <motion.div
@@ -75,16 +75,16 @@ const StartupScreen: React.FC<StartupScreenProps> = ({ onComplete }) => {
             className="win98-window max-w-md mx-auto"
           >
             <div className="win98-title-bar">
-              <span>Welcome to Windows 98</span>
+              <span>Welcome to Prakhar 98</span>
             </div>
             <div className="p-6 text-center">
-              <h2 className="text-2xl font-bold text-[#000080] mb-4">Welcome to My Portfolio</h2>
+              <h2 className="text-2xl font-bold text-[#000080] mb-4">The system has detected high level of creativity and code</h2>
               <p className="text-gray-800 mb-6">
-                Click Start to begin your Windows 98 experience
+                Click Start to enter the experience
               </p>
               <motion.button
                 onClick={handleStart}
-                className="win98-button px-6 py-2 cursor-[url('/assets/cursors/win98-cursor-pointer.png'),_pointer]"
+                className="win98-button px-6 py-2"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -104,15 +104,15 @@ const StartupScreen: React.FC<StartupScreenProps> = ({ onComplete }) => {
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.5 }}
-                src="https://imagizer.imageshack.com/img923/623/o1YQTc.png"
+                src="/assets/images/prakhar.png"
                 alt="Prakhar Nag"
-                className="w-32 h-32 mx-auto mb-4"
+                className="w-40 h-40 mx-auto mb-4 object-cover border-2 border-[#c0c0c0] shadow-inner"
               />
               <motion.h1
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.3 }}
-                className="text-4xl font-bold text-white mb-2"
+                className="text-4xl font-bold text-white mb-2 font-['MS Sans Serif']"
               >
                 Prakhar Nag
               </motion.h1>
@@ -120,7 +120,7 @@ const StartupScreen: React.FC<StartupScreenProps> = ({ onComplete }) => {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.5 }}
-                className="text-white/80"
+                className="text-white/80 font-['MS Sans Serif']"
               >
                 Software Engineer
               </motion.p>

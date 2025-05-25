@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaFolder, FaFolderOpen } from 'react-icons/fa';
+import { useClickSound } from '../hooks/useClickSound';
 
 interface Skill {
   name: string;
@@ -51,8 +52,10 @@ export const skillCategories: SkillCategory[] = [
 
 const Skills: React.FC = () => {
   const [activeFolder, setActiveFolder] = useState<string | null>(null);
+  const handleClick = useClickSound();
 
   const toggleFolder = (title: string) => {
+    handleClick(new MouseEvent('click') as any);
     setActiveFolder(activeFolder === title ? null : title);
   };
 
@@ -107,6 +110,7 @@ const Skills: React.FC = () => {
                     <div
                       key={i}
                       className="win98-button flex flex-col items-center space-y-2 p-2"
+                      onClick={handleClick}
                     >
                       <img 
                         src={skill.icon} 

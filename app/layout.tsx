@@ -5,21 +5,21 @@ import '../src/index.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Prakhar Nag - Portfolio',
+  title: 'Prakhar Nag',
   description: 'Software Engineer Portfolio',
   icons: {
     icon: [
-      { url: 'https://imagizer.imageshack.com/img923/623/o1YQTc.png', sizes: 'any' },
+      { url: '/assets/images/prakhar.png', sizes: 'any' },
     ],
     apple: [
-      { url: 'https://imagizer.imageshack.com/img923/623/o1YQTc.png' },
+      { url: '/assets/images/prakhar.png' },
     ],
   },
   manifest: '/manifest.json',
   openGraph: {
     images: [
       {
-        url: 'https://imagizer.imageshack.com/img923/623/o1YQTc.png',
+        url: '/assets/images/prakhar.png',
         width: 1200,
         height: 630,
         alt: 'Prakhar Nag',
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    images: ['https://imagizer.imageshack.com/img923/623/o1YQTc.png'],
+    images: ['/assets/images/prakhar.png'],
   },
 }
 
@@ -40,10 +40,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="https://imagizer.imageshack.com/img923/623/o1YQTc.png" sizes="any" />
-        <link rel="apple-touch-icon" href="https://imagizer.imageshack.com/img923/623/o1YQTc.png" />
-        <meta property="og:image" content="https://imagizer.imageshack.com/img923/623/o1YQTc.png" />
-        <meta name="twitter:image" content="https://imagizer.imageshack.com/img923/623/o1YQTc.png" />
+        <link rel="icon" href="/assets/images/prakhar.png" sizes="any" />
+        <link rel="apple-touch-icon" href="/assets/images/prakhar.png" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta property="og:image" content="/assets/images/prakhar.png" />
+        <meta name="twitter:image" content="/assets/images/prakhar.png" />
       </head>
       <body className={inter.className}>{children}</body>
     </html>
