@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import Taskbar from './components/Taskbar';
 import StartupScreen from './components/StartupScreen';

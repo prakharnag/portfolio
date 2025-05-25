@@ -10,8 +10,8 @@ const preloadAudio = (url: string): HTMLAudioElement => {
 
 // Initialize audio files
 try {
-  startupAudio = preloadAudio('/prakharnag.github.io/assets/sounds/win98-startup.mp3');
-  clickAudio = preloadAudio('/prakharnag.github.io/assets/sounds/win98-click.mp3');
+  startupAudio = preloadAudio('/assets/sounds/win98-startup.mp3');
+  clickAudio = preloadAudio('/assets/sounds/win98-click.mp3');
 } catch (error) {
   console.error('Error preloading audio:', error);
 }

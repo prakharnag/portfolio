@@ -1,0 +1,70 @@
+import OpenAI from 'openai';
+import { generateSystemPrompt } from '../../../src/config/systemPrompt';
+
+// Check for API key at startup
+if (!process.env.OPENAI_API_KEY) {
+  console.error('OPENAI_API_KEY is not set in environment variables');
+  throw new Error('OPENAI_API_KEY is not set in environment variables');
+}
+
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY
+});
+
+export async function POST(req: Request) {
+  try {
+    const { messages } = await req.json();
+    
+    if (!messages || !Array.isArray(messages)) {
+      console.error('Invalid messages format:', messages);
+      return Response.json(
+        { error: 'Invalid messages format' },
+        { status: 400 }
+      );
+    }
+
+    console.log('Processing chat request with messages:', messages.length);
+    console.log('Using OpenAI API key:', process.env.OPENAI_API_KEY ? 'Present' : 'Missing');
+    
+    const systemPrompt = generateSystemPrompt();
+    console.log('Generated system prompt length:', systemPrompt.length);
+
+    const completion = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo",
+      messages: [
+        { role: 'system', content: systemPrompt },
+        ...messages
+      ],
+    });
+
+    if (!completion.choices[0]?.message?.content) {
+      console.error('No response from OpenAI:', completion);
+      return Response.json(
+        { error: 'No response from OpenAI' },
+        { status: 500 }
+      );
+    }
+
+    return Response.json({ 
+      message: completion.choices[0].message.content 
+    });
+  } catch (error) {
+    console.error('OpenAI API Error:', error);
+    // Log the full error details
+    if (error instanceof Error) {
+      console.error('Error details:', {
+        message: error.message,
+        stack: error.stack,
+        name: error.name
+      });
+    }
+    return Response.json(
+      { 
+        error: 'Failed to get response from OpenAI', 
+        details: error instanceof Error ? error.message : 'Unknown error',
+        type: error instanceof Error ? error.name : 'Unknown'
+      },
+      { status: 500 }
+    );
+  }
+} 

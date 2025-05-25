@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
 import Win98Button from './Win98Button';
@@ -16,6 +18,11 @@ const Contact: React.FC = () => {
     type: null,
     message: ''
   });
+
+  useEffect(() => {
+    // Initialize EmailJS with the public key
+    emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_USER_ID || '');
+  }, []);
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
@@ -44,22 +51,18 @@ const Contact: React.FC = () => {
     setStatus({ type: null, message: '' });
 
     try {
-      // Log the environment variables (they will be undefined if not set)
-      console.log('EmailJS Config:', {
-        serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        userId: import.meta.env.VITE_EMAILJS_USER_ID
-      });
+      // Validate environment variables
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+      const userId = process.env.NEXT_PUBLIC_EMAILJS_USER_ID;
 
-      if (!import.meta.env.VITE_EMAILJS_SERVICE_ID || 
-          !import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 
-          !import.meta.env.VITE_EMAILJS_USER_ID) {
+      if (!serviceId || !templateId || !userId) {
         throw new Error('EmailJS configuration is missing. Please check your environment variables.');
       }
 
       const result = await emailjs.send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        serviceId,
+        templateId,
         {
           from_name: formData.name,
           from_email: formData.email,
@@ -67,16 +70,18 @@ const Contact: React.FC = () => {
           message: formData.message,
           to_name: 'Prakhar'
         },
-        import.meta.env.VITE_EMAILJS_USER_ID
+        userId
       );
 
-      console.log('EmailJS Response:', result);
-
-      setStatus({
-        type: 'success',
-        message: 'Message sent successfully! I will get back to you soon.'
-      });
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      if (result.status === 200) {
+        setStatus({
+          type: 'success',
+          message: 'Message sent successfully! I will get back to you soon.'
+        });
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        throw new Error('Failed to send message. Please try again later.');
+      }
     } catch (error) {
       console.error('EmailJS Error:', error);
       setStatus({
@@ -189,7 +194,7 @@ const Contact: React.FC = () => {
               </p>
               <div className="space-y-4">
                 <a
-                  href="mailto:prakharnagwork@example.com"
+                  href="mailto:prakharnagwork@gmail.com"
                   className="flex items-center gap-2 hover:text-[#000080]"
                 >
                   <FaEnvelope className="text-xl" />

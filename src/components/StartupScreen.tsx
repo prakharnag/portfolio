@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { playStartupSound, stopStartupSound } from '../utils/sounds';
@@ -64,7 +66,7 @@ const StartupScreen: React.FC<StartupScreenProps> = ({ onComplete }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-50 flex items-center justify-center bg-[#000080] cursor-[url('/prakharnag.github.io/assets/cursors/win98-cursor.png'),_auto]"
+        className="fixed inset-0 z-50 flex items-center justify-center bg-[#000080] cursor-[url('/assets/cursors/win98-cursor.png'),_auto]"
       >
         {!hasStarted ? (
           <motion.div
@@ -82,7 +84,7 @@ const StartupScreen: React.FC<StartupScreenProps> = ({ onComplete }) => {
               </p>
               <motion.button
                 onClick={handleStart}
-                className="win98-button px-6 py-2 cursor-[url('/prakharnag.github.io/assets/cursors/win98-cursor-pointer.png'),_pointer]"
+                className="win98-button px-6 py-2 cursor-[url('/assets/cursors/win98-cursor-pointer.png'),_pointer]"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

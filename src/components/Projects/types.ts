@@ -1,9 +1,9 @@
-export interface ProjectType {
+export interface Project {
   title: string;
   description: string;
   image: string;
   tech: string[];
+  achievements: string[];
   github: string;
   live?: string;
-  achievements?: string[];
 }
