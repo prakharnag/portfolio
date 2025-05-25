@@ -14,16 +14,18 @@ const preloadAudio = (url: string): HTMLAudioElement => {
 try {
   startupSound = preloadAudio('/assets/sounds/win98-startup.mp3');
   clickSound = preloadAudio('/assets/sounds/win98-click.mp3');
+  // Ensure click sound is loaded
+  if (clickSound) {
+    clickSound.load();
+  }
 } catch (error) {
   console.error('Error preloading audio:', error);
 }
 
 export const playStartupSound = () => {
-  if (!isBrowser) return;
-  
   if (!startupSound) {
-    startupSound = new Audio('/assets/sounds/startup.mp3');
-    startupSound.volume = 0.5;
+    startupSound = new Audio('/assets/sounds/win98-startup.mp3');
+    startupSound.volume = 0.3;
   }
   startupSound.play().catch(error => {
     console.warn('Failed to play startup sound:', error);
@@ -31,23 +33,23 @@ export const playStartupSound = () => {
 };
 
 export const stopStartupSound = () => {
-  if (!isBrowser || !startupSound) return;
-  
-  startupSound.pause();
-  startupSound.currentTime = 0;
+  if (startupSound) {
+    startupSound.pause();
+    startupSound.currentTime = 0;
+  }
 };
 
 export const playClickSound = () => {
-  if (!isBrowser) return;
-  
   if (!clickSound) {
     clickSound = new Audio('/assets/sounds/win98-click.mp3');
     clickSound.volume = 0.3;
+    clickSound.load();
   }
   
-  // Reset the sound to the beginning if it's already playing
-  clickSound.currentTime = 0;
-  clickSound.play().catch(error => {
+  // Create a new instance for each click to ensure immediate playback
+  const click = new Audio('/assets/sounds/win98-click.mp3');
+  click.volume = 0.3;
+  click.play().catch(error => {
     console.warn('Failed to play click sound:', error);
   });
 }; 
