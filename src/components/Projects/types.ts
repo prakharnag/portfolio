@@ -7,3 +7,5 @@ export interface Project {
   github: string;
   live?: string;
 }
+
+export type ProjectType = Project;

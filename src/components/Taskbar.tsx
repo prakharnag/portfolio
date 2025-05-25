@@ -89,6 +89,10 @@ const Taskbar: React.FC<TaskbarProps> = ({ onLogout }) => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    console.log('Start menu state:', isStartMenuOpen);
+  }, [isStartMenuOpen]);
+
   const handleWindowAction = (id: string, action: 'open' | 'minimize' | 'maximize' | 'close') => {
     setWindows(windows.map(window => {
       if (window.id === id) {
@@ -117,7 +121,15 @@ const Taskbar: React.FC<TaskbarProps> = ({ onLogout }) => {
           {/* Start Button */}
           <div className="relative flex-shrink-0" ref={menuRef}>
             <Win98Button
-              onClick={() => setIsStartMenuOpen(!isStartMenuOpen)}
+              onClick={(e) => {
+                console.log('Start button clicked');
+                e.preventDefault();
+                e.stopPropagation();
+                setIsStartMenuOpen(prev => {
+                  console.log('Toggling start menu from:', prev, 'to:', !prev);
+                  return !prev;
+                });
+              }}
               className="flex items-center space-x-1 px-2 h-8"
             >
               <img 
@@ -129,18 +141,20 @@ const Taskbar: React.FC<TaskbarProps> = ({ onLogout }) => {
             </Win98Button>
 
             {/* Start Menu */}
-            <AnimatePresence>
+            <AnimatePresence mode="wait">
               {isStartMenuOpen && (
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
-                  className="absolute bottom-12 left-0 win98-window min-w-[200px] z-50"
+                  transition={{ duration: 0.2 }}
+                  className="fixed bottom-12 left-0 win98-window min-w-[200px] z-[9999] bg-[#c0c0c0] border-2 border-[#000000] shadow-lg"
+                  style={{ pointerEvents: 'auto' }}
                 >
-                  <div className="win98-title-bar">
+                  <div className="win98-title-bar bg-[#000080] text-white px-2 py-1">
                     <span>Start Menu</span>
                   </div>
-                  <div className="p-1">
+                  <div className="p-1 bg-[#c0c0c0]">
                     <div
                       onClick={handleMenuClick(() => handleWindowAction('skills', 'open'))}
                       className="win98-menu-item flex items-center px-2 py-1 hover:bg-[#000080] hover:text-white cursor-pointer"
