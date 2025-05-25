@@ -1,12 +1,27 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaFolder, FaFolderOpen, FaGithub } from 'react-icons/fa';
 import { projects } from './projectsData';
 
 const Projects: React.FC = () => {
   const [activeProject, setActiveProject] = useState<string | null>(null);
+  const [imagesLoaded, setImagesLoaded] = useState<{ [key: string]: boolean }>({});
+
+  // Preload all project images
+  useEffect(() => {
+    projects.forEach(project => {
+      const img = new Image();
+      img.src = project.image;
+      img.onload = () => {
+        setImagesLoaded(prev => ({
+          ...prev,
+          [project.id]: true
+        }));
+      };
+    });
+  }, []);
 
   const toggleProject = (id: string) => {
     setActiveProject(activeProject === id ? null : id);
@@ -64,10 +79,23 @@ const Projects: React.FC = () => {
                   <div className="p-4 bg-[#c0c0c0]">
                     <div className="flex justify-center mb-4">
                       <div className="relative" style={{ height: '200px', width: 'auto' }}>
+                        {!imagesLoaded[project.id] && (
+                          <div className="absolute inset-0 flex items-center justify-center bg-[#c0c0c0]">
+                            <div className="animate-pulse text-sm">Loading...</div>
+                          </div>
+                        )}
                         <img
                           src={project.image}
                           alt={project.title}
-                          className="h-full w-auto object-contain border-2 border-[#000000]"
+                          className={`h-full w-auto object-contain border-2 border-[#000000] transition-opacity duration-300 ${
+                            imagesLoaded[project.id] ? 'opacity-100' : 'opacity-0'
+                          }`}
+                          onLoad={() => {
+                            setImagesLoaded(prev => ({
+                              ...prev,
+                              [project.id]: true
+                            }));
+                          }}
                         />
                       </div>
                     </div>
